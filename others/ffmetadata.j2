@@ -1,0 +1,11 @@
+;FFMETADATA1
+<ffmpeg -i media/input.avi -f ffmetadata f.txt>
+
+{% for chapter in markers %}
+[CHAPTER]
+TIMEBASE=1/1000
+START={{ chapter.start }}
+END={{ chapter.end | int - 1 }}
+title={{ chapter.title }}
+
+{% endfor %}
